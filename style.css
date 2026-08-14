@@ -234,8 +234,8 @@ body {
 .bmi-marker {
   position: absolute;
   top: -6px;
-  width: 2px;
-  height: 24px;
+  width: 5px;
+  height: fit-content;
   background: var(--text);
   transform: translateX(-1px);
 }
