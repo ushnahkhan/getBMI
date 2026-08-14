@@ -5,13 +5,24 @@
     crossorigin="anonymous">
   </script>
 <meta charset="UTF-8">
+<script>
+  if (localStorage.getItem('bmi-theme') === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — BMI Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/jpeg" href="favicon.jpg">
 </head>
 <body>
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">🌙</button>
+
 <header class="site-header">
+  <div class="brand-chip"><span class="brand-mark">⚖</span> BMI Toolkit</div>
   <h1>Privacy Policy</h1>
 </header>
 
@@ -41,5 +52,6 @@
     <p><a href="index.html">&larr; Back to calculator</a></p>
   </div>
 </main>
+<script src="theme.js"></script>
 </body>
 </html>

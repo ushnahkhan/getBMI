@@ -4,9 +4,17 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2175078605547521"
     crossorigin="anonymous"></script>
 <meta charset="UTF-8">
+<script>
+  if (localStorage.getItem('bmi-theme') === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BMI Calculator — Free BMI, BMR & Calorie Calculator</title>
 <meta name="description" content="Free, fast BMI calculator with BMR, daily calorie needs, and ideal weight range estimates. Metric and imperial units supported.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/jpeg" href="favicon.jpg">
 
@@ -23,7 +31,10 @@
 </head>
 <body>
 
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">🌙</button>
+
 <header class="site-header">
+  <div class="brand-chip"><span class="brand-mark">⚖</span> BMI Toolkit</div>
   <h1>BMI &amp; Health Calculator</h1>
   <p class="tagline">Quick, free health metrics — BMI, BMR, daily calories, and ideal weight range.</p>
 </header>
@@ -233,6 +244,7 @@
   <p><a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
+<script src="theme.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
