@@ -214,6 +214,7 @@ body {
 .bmi-scale {
   margin-top: 1rem;
   position: relative;
+  height: fit-content;
 }
 
 .bmi-scale-bar {
