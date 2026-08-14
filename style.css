@@ -218,9 +218,10 @@ body {
 
 .bmi-scale-bar {
   display: flex;
-  height: 12px;
+  height:fit-content;
   border-radius: 6px;
   overflow: hidden;
+
 }
 
 .seg { flex: 1; }
