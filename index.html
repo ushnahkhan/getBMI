@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator — Free BMI, BMR & Calorie Calculator</title>
+<meta name="description" content="Free, fast BMI calculator with BMR, daily calorie needs, and ideal weight range estimates. Metric and imperial units supported.">
+<link rel="stylesheet" href="style.css">
+
+<!--
+  ============================================================
+  AD SLOT: HEAD (AdSense auto ads script goes here once approved)
+  Replace ca-pub-XXXXXXXXXXXXXXXX with your real AdSense publisher ID.
+  Leave this commented out until your AdSense account is approved —
+  an invalid/placeholder ID can flag your site during review.
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  ============================================================
+-->
+</head>
+<body>
+
+<header class="site-header">
+  <h1>BMI &amp; Health Calculator</h1>
+  <p class="tagline">Quick, free health metrics — BMI, BMR, daily calories, and ideal weight range.</p>
+</header>
+
+<!-- AD SLOT: TOP BANNER -->
+<div class="ad-slot ad-slot--top" id="ad-top" aria-label="advertisement">
+  <span class="ad-placeholder-label">Ad space</span>
+</div>
+
+<main class="layout">
+
+  <div class="calculator-column">
+
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="bmi" role="tab" aria-selected="true">BMI</button>
+      <button class="tab-btn" data-tab="bmr" role="tab" aria-selected="false">BMR</button>
+      <button class="tab-btn" data-tab="calories" role="tab" aria-selected="false">Daily Calories</button>
+      <button class="tab-btn" data-tab="ideal" role="tab" aria-selected="false">Ideal Weight</button>
+    </nav>
+
+    <section class="unit-toggle">
+      <label><input type="radio" name="units" value="metric" checked> Metric (kg / cm)</label>
+      <label><input type="radio" name="units" value="imperial"> Imperial (lb / ft-in)</label>
+    </section>
+
+    <!-- BMI TAB -->
+    <section class="tab-panel active" id="panel-bmi">
+      <h2>BMI Calculator</h2>
+      <form id="bmi-form" class="calc-form">
+        <div class="field-group metric-fields">
+          <label for="bmi-weight-kg">Weight (kg)</label>
+          <input type="number" id="bmi-weight-kg" min="1" step="0.1" required>
+          <label for="bmi-height-cm">Height (cm)</label>
+          <input type="number" id="bmi-height-cm" min="1" step="0.1" required>
+        </div>
+        <div class="field-group imperial-fields hidden">
+          <label for="bmi-weight-lb">Weight (lb)</label>
+          <input type="number" id="bmi-weight-lb" min="1" step="0.1">
+          <label for="bmi-height-ft">Height (ft)</label>
+          <input type="number" id="bmi-height-ft" min="0" step="1">
+          <label for="bmi-height-in">Height (in)</label>
+          <input type="number" id="bmi-height-in" min="0" max="11" step="0.1">
+        </div>
+        <button type="submit">Calculate BMI</button>
+      </form>
+      <div class="result-box" id="bmi-result" hidden>
+        <p class="result-value" id="bmi-value"></p>
+        <p class="result-category" id="bmi-category"></p>
+        <div class="bmi-scale">
+          <div class="bmi-scale-bar">
+            <span class="seg under">Underweight</span>
+            <span class="seg normal">Normal</span>
+            <span class="seg over">Overweight</span>
+            <span class="seg obese">Obese</span>
+          </div>
+          <div class="bmi-marker" id="bmi-marker"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BMR TAB -->
+    <section class="tab-panel" id="panel-bmr">
+      <h2>BMR Calculator</h2>
+      <p class="panel-hint">Basal Metabolic Rate — calories your body burns at complete rest.</p>
+      <form id="bmr-form" class="calc-form">
+        <div class="field-group metric-fields">
+          <label for="bmr-weight-kg">Weight (kg)</label>
+          <input type="number" id="bmr-weight-kg" min="1" step="0.1" required>
+          <label for="bmr-height-cm">Height (cm)</label>
+          <input type="number" id="bmr-height-cm" min="1" step="0.1" required>
+        </div>
+        <div class="field-group imperial-fields hidden">
+          <label for="bmr-weight-lb">Weight (lb)</label>
+          <input type="number" id="bmr-weight-lb" min="1" step="0.1">
+          <label for="bmr-height-ft">Height (ft)</label>
+          <input type="number" id="bmr-height-ft" min="0" step="1">
+          <label for="bmr-height-in">Height (in)</label>
+          <input type="number" id="bmr-height-in" min="0" max="11" step="0.1">
+        </div>
+        <label for="bmr-age">Age (years)</label>
+        <input type="number" id="bmr-age" min="1" max="120" required>
+        <label>Sex</label>
+        <div class="radio-row">
+          <label><input type="radio" name="bmr-sex" value="male" checked> Male</label>
+          <label><input type="radio" name="bmr-sex" value="female"> Female</label>
+        </div>
+        <button type="submit">Calculate BMR</button>
+      </form>
+      <div class="result-box" id="bmr-result" hidden>
+        <p class="result-value" id="bmr-value"></p>
+        <p class="result-category">calories/day at complete rest</p>
+      </div>
+    </section>
+
+    <!-- CALORIES TAB -->
+    <section class="tab-panel" id="panel-calories">
+      <h2>Daily Calorie Needs</h2>
+      <p class="panel-hint">Uses your BMR and activity level to estimate maintenance calories (TDEE).</p>
+      <form id="calories-form" class="calc-form">
+        <div class="field-group metric-fields">
+          <label for="cal-weight-kg">Weight (kg)</label>
+          <input type="number" id="cal-weight-kg" min="1" step="0.1" required>
+          <label for="cal-height-cm">Height (cm)</label>
+          <input type="number" id="cal-height-cm" min="1" step="0.1" required>
+        </div>
+        <div class="field-group imperial-fields hidden">
+          <label for="cal-weight-lb">Weight (lb)</label>
+          <input type="number" id="cal-weight-lb" min="1" step="0.1">
+          <label for="cal-height-ft">Height (ft)</label>
+          <input type="number" id="cal-height-ft" min="0" step="1">
+          <label for="cal-height-in">Height (in)</label>
+          <input type="number" id="cal-height-in" min="0" max="11" step="0.1">
+        </div>
+        <label for="cal-age">Age (years)</label>
+        <input type="number" id="cal-age" min="1" max="120" required>
+        <label>Sex</label>
+        <div class="radio-row">
+          <label><input type="radio" name="cal-sex" value="male" checked> Male</label>
+          <label><input type="radio" name="cal-sex" value="female"> Female</label>
+        </div>
+        <label for="cal-activity">Activity level</label>
+        <select id="cal-activity">
+          <option value="1.2">Sedentary (little/no exercise)</option>
+          <option value="1.375">Light (exercise 1-3 days/week)</option>
+          <option value="1.55" selected>Moderate (exercise 3-5 days/week)</option>
+          <option value="1.725">Active (exercise 6-7 days/week)</option>
+          <option value="1.9">Very active (hard exercise, physical job)</option>
+        </select>
+        <button type="submit">Calculate Calories</button>
+      </form>
+      <div class="result-box" id="calories-result" hidden>
+        <p class="result-value" id="calories-value"></p>
+        <p class="result-category">estimated calories/day to maintain weight</p>
+        <div class="cal-breakdown" id="calories-breakdown"></div>
+      </div>
+    </section>
+
+    <!-- IDEAL WEIGHT TAB -->
+    <section class="tab-panel" id="panel-ideal">
+      <h2>Ideal Weight Range</h2>
+      <p class="panel-hint">Healthy weight range based on the BMI 18.5–24.9 band for your height.</p>
+      <form id="ideal-form" class="calc-form">
+        <div class="field-group metric-fields">
+          <label for="ideal-height-cm">Height (cm)</label>
+          <input type="number" id="ideal-height-cm" min="1" step="0.1" required>
+        </div>
+        <div class="field-group imperial-fields hidden">
+          <label for="ideal-height-ft">Height (ft)</label>
+          <input type="number" id="ideal-height-ft" min="0" step="1">
+          <label for="ideal-height-in">Height (in)</label>
+          <input type="number" id="ideal-height-in" min="0" max="11" step="0.1">
+        </div>
+        <button type="submit">Calculate Ideal Weight</button>
+      </form>
+      <div class="result-box" id="ideal-result" hidden>
+        <p class="result-value" id="ideal-value"></p>
+        <p class="result-category">healthy weight range for your height</p>
+      </div>
+    </section>
+
+    <!-- AD SLOT: IN-CONTENT -->
+    <div class="ad-slot ad-slot--in-content" id="ad-in-content" aria-label="advertisement">
+      <span class="ad-placeholder-label">Ad space</span>
+    </div>
+
+    <article class="article">
+      <h2>What is BMI?</h2>
+      <p>Body Mass Index (BMI) is a simple screening measure that uses your height and weight to estimate whether your weight falls into a healthy range. It was developed in the 19th century by Belgian mathematician Adolphe Quetelet and is still used today by health organizations worldwide as a quick, low-cost way to flag potential weight-related health risks at a population level.</p>
+
+      <h3>How is BMI calculated?</h3>
+      <p>BMI is calculated by dividing weight in kilograms by height in meters squared: <strong>BMI = weight (kg) ÷ height (m)²</strong>. In imperial units, the formula is weight (lb) ÷ height (in)² × 703. The calculator above does this conversion automatically, whichever unit system you choose.</p>
+
+      <h3>BMI categories explained</h3>
+      <p>The World Health Organization defines four standard BMI bands for adults: under 18.5 is classified as underweight, 18.5 to 24.9 is considered normal weight, 25 to 29.9 is overweight, and 30 or above is classified as obese. These bands are population-level guidelines, not individual diagnoses.</p>
+
+      <h3>Limitations of BMI</h3>
+      <p>BMI does not distinguish between muscle and fat, so athletes and very muscular individuals often score as "overweight" despite low body fat. It also doesn't account for fat distribution, bone density, age, sex, or ethnicity, all of which affect health risk independently of BMI. Doctors typically use BMI as one input alongside waist circumference, blood pressure, and other measures — not as a standalone diagnosis.</p>
+
+      <h3>Frequently asked questions</h3>
+      <p><strong>Is BMI accurate for everyone?</strong> No. It's a useful population-level screening tool but less reliable for athletes, older adults, pregnant women, and children, who need different reference standards.</p>
+      <p><strong>What's a healthy BMI?</strong> For most adults, 18.5–24.9 is considered the normal range, though healthy weight varies by individual factors like muscle mass and frame size.</p>
+      <p><strong>What is BMR and why does it matter?</strong> Basal Metabolic Rate is the number of calories your body needs at complete rest just to maintain basic functions like breathing and circulation. It's the foundation for estimating your total daily calorie needs.</p>
+      <p><strong>How is daily calorie need (TDEE) different from BMR?</strong> TDEE (Total Daily Energy Expenditure) adds your activity level on top of BMR, giving a more realistic estimate of how many calories you burn — and need to eat — in an average day.</p>
+    </article>
+
+    <section class="disclaimer">
+      <p>These calculators provide general estimates only and are not a substitute for professional medical advice. Consult a healthcare provider for personalized guidance.</p>
+    </section>
+  </div>
+
+  <aside class="ad-column">
+    <!-- AD SLOT: SIDEBAR -->
+    <div class="ad-slot ad-slot--sidebar" id="ad-sidebar" aria-label="advertisement">
+      <span class="ad-placeholder-label">Ad space</span>
+    </div>
+  </aside>
+
+</main>
+
+<!-- AD SLOT: BOTTOM BANNER -->
+<div class="ad-slot ad-slot--bottom" id="ad-bottom" aria-label="advertisement">
+  <span class="ad-placeholder-label">Ad space</span>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> BMI &amp; Health Calculator. Built for informational purposes only.</p>
+  <p><a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
