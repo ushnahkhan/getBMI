@@ -1,25 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2175078605547521"
-    crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<script>
-  if (localStorage.getItem('bmi-theme') === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BMI Calculator — Free BMI, BMR & Calorie Calculator</title>
 <meta name="description" content="Free, fast BMI calculator with BMR, daily calorie needs, and ideal weight range estimates. Metric and imperial units supported.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://getbmi.pk/">
+
+<!-- Open Graph / social share preview (Facebook, LinkedIn, WhatsApp, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getbmi.pk/">
+<meta property="og:title" content="BMI Calculator — Free BMI, BMR & Calorie Calculator">
+<meta property="og:description" content="Free, fast BMI calculator with BMR, daily calorie needs, and ideal weight range estimates. Metric and imperial units supported.">
+<meta property="og:image" content="https://getbmi.pk/og-image.png">
+
+<!-- Twitter/X card preview -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BMI Calculator — Free BMI, BMR & Calorie Calculator">
+<meta name="twitter:description" content="Free, fast BMI calculator with BMR, daily calorie needs, and ideal weight range estimates.">
+<meta name="twitter:image" content="https://getbmi.pk/og-image.png">
+
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Structured data: helps Google understand this is a free tool + surfaces FAQ rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GetBMI — BMI, BMR & Calorie Calculator",
+  "url": "https://getbmi.pk/",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free BMI, BMR, daily calorie, and ideal weight range calculator. Metric and imperial units supported."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is BMI accurate for everyone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It's a useful population-level screening tool but less reliable for athletes, older adults, pregnant women, and children, who need different reference standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's a healthy BMI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most adults, 18.5–24.9 is considered the normal range, though healthy weight varies by individual factors like muscle mass and frame size."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is BMR and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basal Metabolic Rate is the number of calories your body needs at complete rest just to maintain basic functions like breathing and circulation. It's the foundation for estimating your total daily calorie needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is daily calorie need (TDEE) different from BMR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TDEE (Total Daily Energy Expenditure) adds your activity level on top of BMR, giving a more realistic estimate of how many calories you burn — and need to eat — in an average day."
+      }
+    }
+  ]
+}
+</script>
 
 <!--
   ============================================================
@@ -34,10 +93,7 @@
 </head>
 <body>
 
-<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">🌙</button>
-
 <header class="site-header">
-  <div class="brand-chip"><span class="brand-mark">⚖</span> BMI Toolkit</div>
   <h1>BMI &amp; Health Calculator</h1>
   <p class="tagline">Quick, free health metrics — BMI, BMR, daily calories, and ideal weight range.</p>
 </header>
@@ -247,7 +303,6 @@
   <p><a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
-<script src="theme.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
